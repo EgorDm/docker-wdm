@@ -4,7 +4,8 @@ import subprocess
 from wdm.cli import *
 from wdm import config
 from wde import utils
-import wde.config, wde.cli
+import wde.cli
+import wde.config as wconfig
 
 
 @prelude.command()
@@ -40,10 +41,12 @@ def install(ctx):
             cwd=config.ROOT_FOLDER
         )
 
-        utils.update_ini(
-            'DOMAIN_PATH',
-            click.prompt('Enter path for your domains folder', default=os.path.expanduser('~/domains'))
-        )
+        utils.update_ini('DOMAIN_PATH',
+                         click.prompt('Enter path for your domains folder', default=os.path.expanduser('~/domains')))
+        utils.update_ini('MAGENTO_MARKETPLACE_USER', click.prompt('Enter your magento marketplace user token'))
+        utils.update_ini('MAGENTO_MARKETPLACE_PASS', click.prompt('Enter your magento marketplace user password'))
+        utils.update_ini('MAGENTO_USERNAME', click.prompt('Enter your magento username', default='magnetron'))
+        utils.update_ini('MAGENTO_PASSWORD', click.prompt('Enter your magento password', default='Magnetr0n!'))
 
     ctx.ensure_object(wde.config.Config)
     ctx.invoke(wde.cli.up, build=True)
@@ -51,7 +54,7 @@ def install(ctx):
 
     install_script = os.path.join(config.WDE_ROOT_FOLDER, 'scripts/install.sh')
     subprocess.run(
-        f'sudo -S bash {install_script} {config.get().WDE_ADDRESS}',
+        f'sudo -S bash {install_script} {wconfig.get().WDE_ADDRESS}',
         shell=True,
         capture_output=False
     )

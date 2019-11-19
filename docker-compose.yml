@@ -18,8 +18,8 @@ services:
         MAGENTO_MARKETPLACE_USER: "$MAGENTO_MARKETPLACE_USER"
         MAGENTO_MARKETPLACE_PASS: "$MAGENTO_MARKETPLACE_PASS"
         DOMAIN_SUFFIX: "$DOMAIN_SUFFIX"
-    image: m2wde:${PHP_VERSION}
-    container_name: m2wde-${PHP_VERSION}
+    image: wdm:${PHP_VERSION}
+    container_name: wdm-${PHP_VERSION}
     env_file:
       - .env
     depends_on:

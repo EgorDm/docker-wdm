@@ -1,2 +1,2 @@
-from wde.cli.base import prelude
+from wde.cli.base import *
 import click

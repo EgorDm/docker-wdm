@@ -29,4 +29,4 @@ RUN cd ~/tools && \
     printf "export PATH=\$PATH:~/tools\n" >> ~/.bashrc && \
     cd ~
 
-RUN sudo pip install mage2gen
+# RUN sudo pip install mage2gen

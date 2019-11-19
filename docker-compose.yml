@@ -38,8 +38,8 @@ services:
         source: ./storage/valet/nginx
         target: /home/$DEV_USER/.valet/Nginx
     networks:
-      dev_net:
-        ipv4_address: 172.18.18.200
+      wdm_net:
+        ipv4_address: 172.18.19.200
 
   db:
     image: mariadb
@@ -52,8 +52,8 @@ services:
     volumes:
       - db-store:/var/lib/mysql
     networks:
-      dev_net:
-        ipv4_address: 172.18.18.100
+      wdm_net:
+        ipv4_address: 172.18.19.100
     tty: true
     stdin_open: true
 
@@ -61,11 +61,11 @@ volumes:
   db-store:
 
 networks:
-  dev_net:
+  wdm_net:
     driver: bridge
     driver_opts:
       com.docker.network.enable_ipv6: "false"
     ipam:
       driver: default
       config:
-        - subnet: 172.18.18.0/24
+        - subnet: 172.18.19.0/24

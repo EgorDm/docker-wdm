@@ -26,6 +26,7 @@ RUN cd ~/tools && \
     curl -O https://files.magerun.net/n98-magerun.phar && \
     ln -s ~/tools/n98-magerun2.phar ~/tools/magerun2 && \
     ln -s ~/tools/n98-magerun.phar ~/tools/magerun && \
+    chmod 0777 ~/tools/* && \
     printf "export PATH=\$PATH:~/tools\n" >> ~/.bashrc && \
     cd ~
 
